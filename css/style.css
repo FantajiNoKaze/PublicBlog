@@ -123,10 +123,10 @@ body [data-aos='zoom-in'] {
 }
 @keyframes blur-darken {
   0% {
-    filter: blur(10px) brightness(70%);
+    filter: blur(10px) brightness(90%);
   }
   to {
-    filter: blur(0) brightness(70%);
+    filter: blur(0) brightness(90%);
   }
 }
 @keyframes fade-in-blur {
