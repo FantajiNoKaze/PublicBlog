@@ -1,0 +1,586 @@
+  <!DOCTYPE html>
+  <html lang="en"  
+      data-theme-mode="false"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  <title>
+    程式架構圖(獨立遊戲_幻奏) | 靜華水閱
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="簡易架構圖   完整架構圖   組件規劃 ECS去模擬OOP，每個主實體帶有物件組件，並且帶有生命週期組件，每個會更新生命週期的物件，帶有狀態機組件。 狀態機系統更新組件，依照對應的ObjectHandler處理每幀的狀態更新，含每幀的所有狀態資料、碰撞器參數、子動作參數。 子動作控制物件的物理交互，每個子動作實體獨立且可附帶在該物件實體的StateActionBuffer底下，以便在狀態改變">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程式架構圖(獨立遊戲_幻奏)">
+<meta property="og:url" content="http://example.com/2026/02/06/%E7%A8%8B%E5%BC%8F%E6%9E%B6%E6%A7%8B%E5%9C%96(%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2_%E5%B9%BB%E5%A5%8F)/index.html">
+<meta property="og:site_name" content="靜華水閱">
+<meta property="og:description" content="簡易架構圖   完整架構圖   組件規劃 ECS去模擬OOP，每個主實體帶有物件組件，並且帶有生命週期組件，每個會更新生命週期的物件，帶有狀態機組件。 狀態機系統更新組件，依照對應的ObjectHandler處理每幀的狀態更新，含每幀的所有狀態資料、碰撞器參數、子動作參數。 子動作控制物件的物理交互，每個子動作實體獨立且可附帶在該物件實體的StateActionBuffer底下，以便在狀態改變">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/lib/post/%E7%A8%8B%E5%BC%8F%E6%9E%B6%E6%A7%8B%E5%9C%96(%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2_%E5%B9%BB%E5%A5%8F)/%E7%B0%A1%E6%98%93%E6%9E%B6%E6%A7%8B%E5%9C%96.png">
+<meta property="og:image" content="http://example.com/lib/post/%E7%A8%8B%E5%BC%8F%E6%9E%B6%E6%A7%8B%E5%9C%96(%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2_%E5%B9%BB%E5%A5%8F)/%E5%B9%BB%E5%A5%8F%E6%9E%B6%E6%A7%8B%E5%9C%96.png">
+<meta property="article:published_time" content="2026-02-06T08:20:00.000Z">
+<meta property="article:modified_time" content="2026-02-06T10:47:46.607Z">
+<meta property="article:author" content="Fntasy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/lib/post/%E7%A8%8B%E5%BC%8F%E6%9E%B6%E6%A7%8B%E5%9C%96(%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2_%E5%B9%BB%E5%A5%8F)/%E7%B0%A1%E6%98%93%E6%9E%B6%E6%A7%8B%E5%9C%96.png">
+    <link rel="alternate" href="/atom.xml" title="靜華水閱" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">Home</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">Archives</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">About</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">Friend</span>
+        </span>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" aria-label="RSS Feed" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+    <picture></picture>
+    <img  fetchpriority="high" src="/lib/post/%E7%A8%8B%E5%BC%8F%E6%9E%B6%E6%A7%8B%E5%9C%96(%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2_%E5%B9%BB%E5%A5%8F)/%E5%B9%BB%E5%A5%8F%E6%9E%B6%E6%A7%8B%E5%9C%96.png" alt="程式架構圖(獨立遊戲_幻奏)">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">程式架構圖(獨立遊戲_幻奏)</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B0%A1%E6%98%93%E6%9E%B6%E6%A7%8B%E5%9C%96"><span class="toc-number">1.</span> <span class="toc-text"> 簡易架構圖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E5%9C%96"><span class="toc-number">2.</span> <span class="toc-text"> 完整架構圖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B5%84%E4%BB%B6%E8%A6%8F%E5%8A%83"><span class="toc-number">3.</span> <span class="toc-text"> 組件規劃</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%B5%B1%E8%A6%8F%E5%8A%83"><span class="toc-number">4.</span> <span class="toc-text"> 系統規劃</span></a></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Fntasy" class="lazyload">
+  <div class="sidebar-author-name">Fntasy</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-程式架構圖(獨立遊戲_幻奏)" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-02-06T08:20:00.000Z" itemprop="datePublished">2026-02-06</time>
+    <time style="display: none;" id="post-update-time">2026-02-06</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <span id="more"></span>
+<h3 id="簡易架構圖"><a class="markdownIt-Anchor" href="#簡易架構圖"></a> 簡易架構圖</h3>
+<p><img src="/lib/post/%E7%A8%8B%E5%BC%8F%E6%9E%B6%E6%A7%8B%E5%9C%96(%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2_%E5%B9%BB%E5%A5%8F)/%E7%B0%A1%E6%98%93%E6%9E%B6%E6%A7%8B%E5%9C%96.png" alt="HEXO詳圖" title="HEXO詳圖" /></p>
+<h3 id="完整架構圖"><a class="markdownIt-Anchor" href="#完整架構圖"></a> 完整架構圖</h3>
+<p><img src="/lib/post/%E7%A8%8B%E5%BC%8F%E6%9E%B6%E6%A7%8B%E5%9C%96(%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2_%E5%B9%BB%E5%A5%8F)/%E5%B9%BB%E5%A5%8F%E6%9E%B6%E6%A7%8B%E5%9C%96.png" alt="HEXO詳圖" title="HEXO詳圖" /></p>
+<h3 id="組件規劃"><a class="markdownIt-Anchor" href="#組件規劃"></a> 組件規劃</h3>
+<p>ECS去模擬OOP，每個主實體帶有物件組件，並且帶有生命週期組件，每個會更新生命週期的物件，帶有狀態機組件。<br />
+狀態機系統更新組件，依照對應的ObjectHandler處理每幀的狀態更新，含每幀的所有狀態資料、碰撞器參數、子動作參數。<br />
+子動作控制物件的物理交互，每個子動作實體獨立且可附帶在該物件實體的StateActionBuffer底下，以便在狀態改變時取消所有子動作的物理影響</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Attributes</th>
+<th style="text-align:left">SubAction</th>
+<th style="text-align:left">ColliderBuffer</th>
+<th style="text-align:left">Object</th>
+<th style="text-align:left">State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Attributes_HP</td>
+<td style="text-align:left">SubAction_Force</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Object_SynchroID</td>
+<td style="text-align:left">State_ActionFlag</td>
+</tr>
+<tr>
+<td style="text-align:left">Attributes_MP</td>
+<td style="text-align:left">SubAction_Rotat</td>
+<td style="text-align:left">ColliderBuffer_Hitbox</td>
+<td style="text-align:left">Object_Layer</td>
+<td style="text-align:left">State_Abnormal</td>
+</tr>
+<tr>
+<td style="text-align:left">Attributes_ATK</td>
+<td style="text-align:left">SubAction_Transform</td>
+<td style="text-align:left">ColliderBuffer_Hurtbox</td>
+<td style="text-align:left">Object_LifeTime</td>
+<td style="text-align:left">State_StateMachine</td>
+</tr>
+<tr>
+<td style="text-align:left">Attributes_DEF</td>
+<td style="text-align:left">SubAction_Track</td>
+<td style="text-align:left">ColliderBuffer_Rigidbody</td>
+<td style="text-align:left">Object_Handler</td>
+<td style="text-align:left">State_InputFlags</td>
+</tr>
+<tr>
+<td style="text-align:left">Attributes_SPD</td>
+<td style="text-align:left">SubAction_AimLock</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Object_Owner</td>
+<td style="text-align:left">State_SubActionBuffer</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Role</th>
+<th style="text-align:left">Bullet</th>
+<th style="text-align:left">Character</th>
+<th style="text-align:left">Collider</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Role_Info</td>
+<td style="text-align:left">Bullet_Info</td>
+<td style="text-align:left">Character_Info</td>
+<td style="text-align:left">Collider_Info</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">struct</span> System_OnInstantiate : IComponentData&#123; </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">struct</span> System_OnDestroy : IComponentData&#123; </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">struct</span> System_OnCreat : IComponentData&#123;</span><br><span class="line">    <span class="keyword">public</span> Object_SynchroID id;</span><br><span class="line">    <span class="keyword">public</span> Object_Layer layer;</span><br><span class="line">    <span class="keyword">public</span> Object_LifeTime life;</span><br><span class="line">    <span class="keyword">public</span> Object_Owner owner;</span><br><span class="line">    <span class="keyword">public</span> LocalTransform transform;</span><br><span class="line">    <span class="keyword">public</span> Parent parent;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="系統規劃"><a class="markdownIt-Anchor" href="#系統規劃"></a> 系統規劃</h3>
+<ul>
+<li>GameSystem : 處理所有遊戲內遊戲狀態，遊戲初始化、GameTick、遊戲事件。</li>
+<li>UnityDotsBaseSystem : Unity自帶物理系統，含Rigidbody與碰撞檢測算法。</li>
+<li>PhysicsSystem : 自製獨立物理系統，能引入物理參數，客製化物理。</li>
+<li>PlayerSystem : 玩家操作同步到ECS、玩家資料同步。</li>
+<li>HitboxBakerSystem : 每幀調用Hitbox。</li>
+<li>StateMachionSystem : 每幀依造物件ID的動作藍圖執行帶狀態機組件的實體模擬物件動作。</li>
+<li>SubActionSystem : 每個物件有DynamicBuffer掛載子動作，子動作獨立在SubActionSystem執行負載物的Transform修改(兩個實體:一個是子動作實體;一個是負載物)</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">struct</span> SubAction_Force : IComponentData&#123;</span><br><span class="line">    <span class="keyword">public</span> Entity load;</span><br><span class="line">    <span class="keyword">public</span> float3 vector;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">bool</span> @fixed;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> _virtual = SystemAPI.GetComponentLookup&lt;Physics_Virtual&gt;(isReadOnly: <span class="literal">false</span>);</span><br><span class="line"><span class="keyword">foreach</span> (<span class="keyword">var</span> data <span class="keyword">in</span> SystemAPI.Query&lt;RefRW&lt;SubAction_Force&gt;&gt;())&#123;</span><br><span class="line">    _virtual.GetRefRW(load).ValueRW.linear = math.mul(_transform[load].Rotation, data.vector);  </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 每個子動作帶生命週期，在ObjectHandler定義該交互參數。</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>EventSystem : TriggerEvent、TriggerBuffer、CooldownBuffer、GameEvent、物件事件委任在ObjectHandler裡</li>
+<li>VelocitySystem : 原生物裡系統，唯一能改動物件Transform的地方。</li>
+<li>LifeTimeSystem : 每個實體物件必帶生命週期，模擬物件生成、更新、修毀。</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">foreach</span> (<span class="keyword">var</span> (OnCreat, entity) <span class="keyword">in</span> SystemAPI.Query&lt;RefRO&lt;System_OnCreat&gt;&gt;().WithEntityAccess())&#123;</span><br><span class="line">    ctx.ecb.AddComponent&lt;Object_SynchroID&gt;(entity, <span class="keyword">new</span> Object_SynchroID &#123; synchroID = SystemAPI.GetSingletonRW&lt;Singleton_GameData&gt;().ValueRW.synchroID++ &#125;);</span><br><span class="line">    ctx.ecb.AddComponent&lt;Object_Layer&gt;(entity, OnCreat.ValueRO.layer);</span><br><span class="line">    ctx.ecb.AddComponent&lt;Object_LifeTime&gt;(entity, OnCreat.ValueRO.life);</span><br><span class="line">    ctx.ecb.AddComponent&lt;Object_Owner&gt;(entity, OnCreat.ValueRO.owner);</span><br><span class="line">    ctx.ecb.AddComponent&lt;LocalTransform&gt;(entity, OnCreat.ValueRO.transform);</span><br><span class="line">    ctx.ecb.AddComponent&lt;Parent&gt;(entity, OnCreat.ValueRO.parent);</span><br><span class="line">    ctx.ecb.RemoveComponent&lt;System_OnCreat&gt;(entity);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">foreach</span> (<span class="keyword">var</span> (data, entity) <span class="keyword">in</span> SystemAPI.Query&lt;RefRW&lt;System_OnDestroy&gt;&gt;().WithEntityAccess())&#123;</span><br><span class="line">    ctx.SafeDestroyEntity(entity);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">foreach</span> (<span class="keyword">var</span> (data, entity) <span class="keyword">in</span> SystemAPI.Query&lt;RefRW&lt;Object_LifeTime&gt;&gt;().WithEntityAccess())&#123;</span><br><span class="line">    data.ValueRW.lifeTime++;</span><br><span class="line">    <span class="keyword">if</span> (data.ValueRO.releaseTime != <span class="number">0</span> &amp;&amp; data.ValueRW.releaseTime == data.ValueRW.lifeTime)&#123;</span><br><span class="line">        ctx.ecb.AddComponent(entity, <span class="keyword">new</span> System_OnDestroy &#123; &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/Unity/" title="Unity" data-aos="zoom-in">Unity</a>
+
+      
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+    <div class="article-nav-link-wrap right">
+        <img data-src="/lib/post/%E8%AB%87ECS%E8%88%87OOP/cover.png" data-sizes="auto" alt="ECS架構" class="lazyload">
+      <a href="/2026/02/06/%E8%AB%87ECS%E8%88%87OOP/" aria-label="Next: ECS架構"  title="Next: ECS架構"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+          ECS架構
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      Fntasy
+    </div>
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        3.3k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        00:16
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B0%A1%E6%98%93%E6%9E%B6%E6%A7%8B%E5%9C%96"><span class="toc-number">1.</span> <span class="toc-text"> 簡易架構圖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E5%9C%96"><span class="toc-number">2.</span> <span class="toc-text"> 完整架構圖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B5%84%E4%BB%B6%E8%A6%8F%E5%8A%83"><span class="toc-number">3.</span> <span class="toc-text"> 組件規劃</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%B5%B1%E8%A6%8F%E5%8A%83"><span class="toc-number">4.</span> <span class="toc-text"> 系統規劃</span></a></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Fntasy" class="lazyload">
+  <div class="sidebar-author-name">Fntasy</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "Fntasy",
+          title: "程式架構圖(獨立遊戲_幻奏)",
+          url: "http://example.com/2026/02/06/%E7%A8%8B%E5%BC%8F%E6%9E%B6%E6%A7%8B%E5%9C%96(%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2_%E5%B9%BB%E5%A5%8F)/",
+          excerpt: "",
+          description: "",
+          stripContent: "  簡易架構圖   完整架構圖   組件規劃 ECS去模擬OOP，每個主實體帶有物件組件，並且帶有生命週期組件，每個會更新生命週期的物件，帶有狀態機組件。 狀態機系統更新組件，依照對應的ObjectHandler處理每幀的狀態更新，含每幀的所有狀態資料、碰撞器參數、子動作參數。 子動作控制物件的物理交互，每個子動作實體獨立且可附帶在該物件實體的StateActionBuffer底下，以便在狀態改變時取消所有子動作的物理影響    Attributes SubAction ColliderBuff",
+          date: "Fri Feb 06 2026 16:20:00 GMT+0800",
+          updated: "Fri Feb 06 2026 18:47:46 GMT+0800",
+          cover: "/lib/post/%E7%A8%8B%E5%BC%8F%E6%9E%B6%E6%A7%8B%E5%9C%96(%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2_%E5%B9%BB%E5%A5%8F)/%E5%B9%BB%E5%A5%8F%E6%9E%B6%E6%A7%8B%E5%9C%96.png",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>

@@ -1,0 +1,526 @@
+  <!DOCTYPE html>
+  <html lang="en"  
+      data-theme-mode="false"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  <title>
+    ECS架構 | 靜華水閱
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="為甚麼用ECS架構">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ECS架構">
+<meta property="og:url" content="http://example.com/2026/02/06/%E8%AB%87ECS%E8%88%87OOP/index.html">
+<meta property="og:site_name" content="靜華水閱">
+<meta property="og:description" content="為甚麼用ECS架構">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/lib/post/%E8%AB%87ECS%E8%88%87OOP/OOP.png">
+<meta property="og:image" content="http://example.com/lib/post/%E8%AB%87ECS%E8%88%87OOP/ECS.png">
+<meta property="article:published_time" content="2026-02-06T06:31:00.000Z">
+<meta property="article:modified_time" content="2026-02-06T11:05:43.692Z">
+<meta property="article:author" content="Fntasy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/lib/post/%E8%AB%87ECS%E8%88%87OOP/OOP.png">
+    <link rel="alternate" href="/atom.xml" title="靜華水閱" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">Home</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">Archives</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">About</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">Friend</span>
+        </span>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" aria-label="RSS Feed" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+    <picture></picture>
+    <img  fetchpriority="high" src="/lib/post/%E8%AB%87ECS%E8%88%87OOP/cover.png" alt="ECS架構">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">ECS架構</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%84%AA%E5%8B%A2"><span class="toc-number">1.</span> <span class="toc-text"> 優勢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#oop"><span class="toc-number">2.</span> <span class="toc-text"> OOP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ecs"><span class="toc-number">3.</span> <span class="toc-text"> ECS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%B6%E6%A7%8B%E4%BE%9D%E7%85%A7%E9%96%8B%E7%99%BC%E9%9C%80%E6%B1%82%E5%81%9A%E9%81%B8%E6%93%87"><span class="toc-number">4.</span> <span class="toc-text"> 架構依照開發需求做選擇</span></a></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Fntasy" class="lazyload">
+  <div class="sidebar-author-name">Fntasy</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-談ECS與OOP" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-02-06T06:31:00.000Z" itemprop="datePublished">2026-02-06</time>
+    <time style="display: none;" id="post-update-time">2026-02-06</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <p>為甚麼用ECS架構</p>
+<span id="more"></span>
+<h3 id="優勢"><a class="markdownIt-Anchor" href="#優勢"></a> 優勢</h3>
+<p>直觀的分隔資料層、邏輯層、顯示層<br />
+記憶體分配工整，快取容易<br />
+世界資料快照容易<br />
+並行運行，各系統邏輯是獨立的</p>
+<h3 id="oop"><a class="markdownIt-Anchor" href="#oop"></a> OOP</h3>
+<p><img src="/lib/post/%E8%AB%87ECS%E8%88%87OOP/OOP.png" alt="HEXO詳圖" title="HEXO詳圖" /><br />
+假設我有一些子彈，我要怎麼讓子彈飛行。<br />
+定義成一個子彈的類(Class)，包含屬性(Field)、方法(Method)，實例化這個物件。<br />
+所以整個世界中會有一堆的實例化出來的子彈物件，OOP會在子彈的類上實作一個飛行的方法，當主線程更新世界時，會更新所有的物件，若子彈上有更新的飛行方法就能去更新子彈的位置屬性。但是當這個物件越來越龐大時每當調用單一物件的屬性資料記憶體都要直接找到這個大顆的物件，&quot;找&quot;這個動作會在記憶體挖一個空間作快取，整個世界物件循環刷過一輪快取一下就滿了，當需要對某個屬性做操作時基本上是重新快取，在重複調用時效能非常差，而且GC非常耗效能。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Object</span>&#123;</span><br><span class="line">    <span class="built_in">int</span> lifeTime;</span><br><span class="line">    <span class="built_in">int</span> releaseTime;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Update</span>()</span>&#123;</span><br><span class="line">        lifeTime++;</span><br><span class="line">        <span class="keyword">if</span>(data.ValueRW.releaseTime == data.ValueRW.lifeTime)&#123;</span><br><span class="line">            Destroy();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Destroy</span>()</span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Bullet</span>: <span class="title">Object</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">Update</span>()</span>&#123;</span><br><span class="line">        <span class="keyword">base</span>.Update();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">List&lt;Object&gt; objs = <span class="keyword">new</span> ();</span><br><span class="line"><span class="keyword">foreach</span>(<span class="keyword">var</span> obj <span class="keyword">in</span> objs)&#123;</span><br><span class="line">     obj.Update();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ecs"><a class="markdownIt-Anchor" href="#ecs"></a> ECS</h3>
+<p><img src="/lib/post/%E8%AB%87ECS%E8%88%87OOP/ECS.png" alt="HEXO詳圖" title="HEXO詳圖" /><br />
+在ECS架構裡沒有物件的概念，物件可以看成由組件組成，組件是甚麼，組件就是很多類的資料像是位置、攻擊、ID、像是假設子彈就是可以設計成<br />
+以物理組件+碰撞組件+子彈組件，組成子彈這個實體(不是物件，自己不帶方法)。世界的更新稱為System，會設計很多的System去直接更新帶規定組件的資料，System不會在乎這個物件是什麼，只要對應到System就直接修改組件的值，從這裡可以發現，世界更新時不用再取整個世界上的物件，<br />
+直接依照系統的定義，更新資料，大大減少記憶體的負擔，並且每個系統邏輯是分開的，可以並行運行。資料在記憶體裡的容量也大幅減小，因為只有數組，並且在記憶體裡每種資料格式已經分類畫好不會像物件一樣不同大小。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">struct</span> Object_LifeTime : IComponentData&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> lifeTime;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> releaseTime;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">struct</span> System_OnDestroy : IComponentData&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">foreach</span> (<span class="keyword">var</span> (data, entity) <span class="keyword">in</span> SystemAPI.Query&lt;RefRW&lt;Object_LifeTime&gt;&gt;().WithEntityAccess())&#123;</span><br><span class="line">    data.ValueRW.lifeTime++;</span><br><span class="line">    <span class="keyword">if</span> (data.ValueRO.releaseTime != <span class="number">0</span> &amp;&amp; data.ValueRW.releaseTime == data.ValueRW.lifeTime)&#123;</span><br><span class="line">        ctx.ecb.AddComponent(entity, <span class="keyword">new</span> System_OnDestroy &#123; &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">foreach</span> (<span class="keyword">var</span> (data, entity) <span class="keyword">in</span> SystemAPI.Query&lt;RefRW&lt;System_OnDestroy&gt;&gt;().WithEntityAccess())&#123;</span><br><span class="line">    ctx.SafeDestroyEntity(entity);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="架構依照開發需求做選擇"><a class="markdownIt-Anchor" href="#架構依照開發需求做選擇"></a> 架構依照開發需求做選擇</h3>
+<p>當然OOP也可以做得像ECS，例如用array分組物件，以interface模擬System。<br />
+ECS也可以為了貼近人性化或需要快速開發而模擬OOP。</p>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/Unity/" title="Unity" data-aos="zoom-in">Unity</a>
+
+      
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+          <img data-src="/lib/post/%E7%A8%8B%E5%BC%8F%E6%9E%B6%E6%A7%8B%E5%9C%96(%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2_%E5%B9%BB%E5%A5%8F)/%E5%B9%BB%E5%A5%8F%E6%9E%B6%E6%A7%8B%E5%9C%96.png" data-sizes="auto" alt="程式架構圖(獨立遊戲_幻奏)" class="lazyload">
+        <a href="/2026/02/06/%E7%A8%8B%E5%BC%8F%E6%9E%B6%E6%A7%8B%E5%9C%96(%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2_%E5%B9%BB%E5%A5%8F)/" aria-label="Prev: 程式架構圖(獨立遊戲_幻奏)" title="Prev: 程式架構圖(獨立遊戲_幻奏)"></a>
+        <div class="article-nav-caption">Prev</div>
+        <h3 class="article-nav-title">
+            程式架構圖(獨立遊戲_幻奏)
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+        <img data-src="/lib/post/%E8%AA%8D%E8%AD%98Hexo/cover.png" data-sizes="auto" alt="認識Hexo" class="lazyload">
+      <a href="/2025/09/25/%E8%AA%8D%E8%AD%98Hexo/" aria-label="Next: 認識Hexo"  title="Next: 認識Hexo"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+          認識Hexo
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      Fntasy
+    </div>
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        3.3k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        00:16
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%84%AA%E5%8B%A2"><span class="toc-number">1.</span> <span class="toc-text"> 優勢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#oop"><span class="toc-number">2.</span> <span class="toc-text"> OOP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ecs"><span class="toc-number">3.</span> <span class="toc-text"> ECS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%B6%E6%A7%8B%E4%BE%9D%E7%85%A7%E9%96%8B%E7%99%BC%E9%9C%80%E6%B1%82%E5%81%9A%E9%81%B8%E6%93%87"><span class="toc-number">4.</span> <span class="toc-text"> 架構依照開發需求做選擇</span></a></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Fntasy" class="lazyload">
+  <div class="sidebar-author-name">Fntasy</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">7</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">3</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "Fntasy",
+          title: "ECS架構",
+          url: "http://example.com/2026/02/06/%E8%AB%87ECS%E8%88%87OOP/",
+          excerpt: "為甚麼用ECS架構",
+          description: "",
+          stripContent: "為甚麼用ECS架構   優勢 直觀的分隔資料層、邏輯層、顯示層 記憶體分配工整，快取容易 世界資料快照容易 並行運行，各系統邏輯是獨立的  OOP  假設我有一些子彈，我要怎麼讓子彈飛行。 定義成一個子彈的類(Class)，包含屬性(Field)、方法(Method)，實例化這個物件。 所以整個世界中會有一堆的實例化出來的子彈物件，OOP會在子彈的類上實作一個飛行的方法，當主線程更新世界時，會更新所有的物件，若子彈上有更新的飛行方法就能去更新子彈的位置屬性。但是當這個物件越來越龐大時每當調用單一",
+          date: "Fri Feb 06 2026 14:31:00 GMT+0800",
+          updated: "Fri Feb 06 2026 19:05:43 GMT+0800",
+          cover: "/lib/post/%E8%AB%87ECS%E8%88%87OOP/cover.png",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>
