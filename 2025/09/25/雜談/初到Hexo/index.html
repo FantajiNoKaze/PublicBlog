@@ -9,7 +9,7 @@
   
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://example.com';</script>
   <title>
-    程式架構圖(獨立遊戲_幻奏) | 靜華水閱
+    初到Hexo | 靜華水閱
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
@@ -17,20 +17,17 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="簡易架構圖   完整架構圖   組件規劃 ECS去模擬OOP，每個主實體帶有物件組件，並且帶有生命週期組件，每個會更新生命週期的物件，帶有狀態機組件。 狀態機系統更新組件，依照對應的ObjectHandler處理每幀的狀態更新，含每幀的所有狀態資料、碰撞器參數、子動作參數。 子動作控制物件的物理交互，每個子動作實體獨立且可附帶在該物件實體的StateActionBuffer底下，以便在狀態改變">
+    <meta name="description" content="有一天會寫日記的 友#jackoo 傳了漂亮blog給我;我其實是不寫日記的，不知道為甚麼我總是排斥過去的自己，其一是對當下的總結不夠，其二是總覺得自己不夠好，記錄著也沒意思。   最近在看龍族-江南，前面劇情很尷尬，畢竟是初代龍傲天爽文，沒有任何參考，只能無中生有，我那時就在想作者的心境。他是怎麼在迷茫裡持續寫作的。 隨著時間推流，時間給了故事力量，不管是故事還是作者，隨者時間成長，我喜歡">
 <meta property="og:type" content="article">
-<meta property="og:title" content="程式架構圖(獨立遊戲_幻奏)">
-<meta property="og:url" content="https://example.com/2026/02/06/%E7%A8%8B%E5%BC%8F%E6%9E%B6%E6%A7%8B%E5%9C%96(%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2_%E5%B9%BB%E5%A5%8F)/index.html">
+<meta property="og:title" content="初到Hexo">
+<meta property="og:url" content="https://example.com/2025/09/25/%E9%9B%9C%E8%AB%87/%E5%88%9D%E5%88%B0Hexo/index.html">
 <meta property="og:site_name" content="靜華水閱">
-<meta property="og:description" content="簡易架構圖   完整架構圖   組件規劃 ECS去模擬OOP，每個主實體帶有物件組件，並且帶有生命週期組件，每個會更新生命週期的物件，帶有狀態機組件。 狀態機系統更新組件，依照對應的ObjectHandler處理每幀的狀態更新，含每幀的所有狀態資料、碰撞器參數、子動作參數。 子動作控制物件的物理交互，每個子動作實體獨立且可附帶在該物件實體的StateActionBuffer底下，以便在狀態改變">
+<meta property="og:description" content="有一天會寫日記的 友#jackoo 傳了漂亮blog給我;我其實是不寫日記的，不知道為甚麼我總是排斥過去的自己，其一是對當下的總結不夠，其二是總覺得自己不夠好，記錄著也沒意思。   最近在看龍族-江南，前面劇情很尷尬，畢竟是初代龍傲天爽文，沒有任何參考，只能無中生有，我那時就在想作者的心境。他是怎麼在迷茫裡持續寫作的。 隨著時間推流，時間給了故事力量，不管是故事還是作者，隨者時間成長，我喜歡">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://example.com/lib/post/%E7%A8%8B%E5%BC%8F%E6%9E%B6%E6%A7%8B%E5%9C%96(%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2_%E5%B9%BB%E5%A5%8F)/%E7%B0%A1%E6%98%93%E6%9E%B6%E6%A7%8B%E5%9C%96.png">
-<meta property="og:image" content="https://example.com/lib/post/%E7%A8%8B%E5%BC%8F%E6%9E%B6%E6%A7%8B%E5%9C%96(%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2_%E5%B9%BB%E5%A5%8F)/%E5%B9%BB%E5%A5%8F%E6%9E%B6%E6%A7%8B%E5%9C%96.png">
-<meta property="article:published_time" content="2026-02-06T08:20:00.000Z">
-<meta property="article:modified_time" content="2026-02-06T17:43:47.456Z">
+<meta property="article:published_time" content="2025-09-25T09:49:32.000Z">
+<meta property="article:modified_time" content="2026-02-09T07:56:21.508Z">
 <meta property="article:author" content="Fntasy">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://example.com/lib/post/%E7%A8%8B%E5%BC%8F%E6%9E%B6%E6%A7%8B%E5%9C%96(%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2_%E5%B9%BB%E5%A5%8F)/%E7%B0%A1%E6%98%93%E6%9E%B6%E6%A7%8B%E5%9C%96.png">
     <link rel="alternate" href="/atom.xml" title="靜華水閱" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -129,11 +126,11 @@
 </div>
 <header id="header" aria-label="Site header">
     <picture></picture>
-    <img  fetchpriority="high" src="/lib/post/%E7%A8%8B%E5%BC%8F%E6%9E%B6%E6%A7%8B%E5%9C%96(%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2_%E5%B9%BB%E5%A5%8F)/%E5%B9%BB%E5%A5%8F%E6%9E%B6%E6%A7%8B%E5%9C%96.png" alt="程式架構圖(獨立遊戲_幻奏)">
+    <img  fetchpriority="high" src="/lib/post/%E5%88%9D%E5%88%B0Hexo/cover.png" alt="初到Hexo">
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
-            <h1 data-aos="slide-up">程式架構圖(獨立遊戲_幻奏)</h1>
+            <h1 data-aos="slide-up">初到Hexo</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
         </h2>
@@ -148,7 +145,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B0%A1%E6%98%93%E6%9E%B6%E6%A7%8B%E5%9C%96"><span class="toc-number">1.</span> <span class="toc-text"> 簡易架構圖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E5%9C%96"><span class="toc-number">2.</span> <span class="toc-text"> 完整架構圖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B5%84%E4%BB%B6%E8%A6%8F%E5%8A%83"><span class="toc-number">3.</span> <span class="toc-text"> 組件規劃</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%B5%B1%E8%A6%8F%E5%8A%83"><span class="toc-number">4.</span> <span class="toc-text"> 系統規劃</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text"> </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-2"><span class="toc-number">2.</span> <span class="toc-text"> </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-3"><span class="toc-number">3.</span> <span class="toc-text"> </span></a></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -159,11 +156,11 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">7</div>
+    <div class="sidebar-state-number">11</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
-    <div class="sidebar-state-number">3</div>
+    <div class="sidebar-state-number">4</div>
   </div>
   <div class="sidebar-state-tag">
     <div>Tag</div>
@@ -214,13 +211,13 @@
   </div>
 </aside>
 
-          <section id="main" aria-label="Main content"><article id="post-程式架構圖(獨立遊戲_幻奏)" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main" aria-label="Main content"><article id="post-雜談/初到Hexo" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
-    <time datetime="2026-02-06T08:20:00.000Z" itemprop="datePublished">2026-02-06</time>
-    <time style="display: none;" id="post-update-time">2026-02-07</time>
+    <time datetime="2025-09-25T09:49:32.000Z" itemprop="datePublished">2025-09-25</time>
+    <time style="display: none;" id="post-update-time">2026-02-09</time>
   </span>
 </div>
 
@@ -230,112 +227,36 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
         <span id="more"></span>
-<h3 id="簡易架構圖"><a class="markdownIt-Anchor" href="#簡易架構圖"></a> 簡易架構圖</h3>
-<p><img src="/lib/post/%E7%A8%8B%E5%BC%8F%E6%9E%B6%E6%A7%8B%E5%9C%96(%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2_%E5%B9%BB%E5%A5%8F)/%E7%B0%A1%E6%98%93%E6%9E%B6%E6%A7%8B%E5%9C%96.png" alt="" /></p>
-<h3 id="完整架構圖"><a class="markdownIt-Anchor" href="#完整架構圖"></a> 完整架構圖</h3>
-<p><img src="/lib/post/%E7%A8%8B%E5%BC%8F%E6%9E%B6%E6%A7%8B%E5%9C%96(%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2_%E5%B9%BB%E5%A5%8F)/%E5%B9%BB%E5%A5%8F%E6%9E%B6%E6%A7%8B%E5%9C%96.png" alt="" /></p>
-<h3 id="組件規劃"><a class="markdownIt-Anchor" href="#組件規劃"></a> 組件規劃</h3>
-<p>ECS去模擬OOP，每個主實體帶有物件組件，並且帶有生命週期組件，每個會更新生命週期的物件，帶有狀態機組件。<br />
-狀態機系統更新組件，依照對應的ObjectHandler處理每幀的狀態更新，含每幀的所有狀態資料、碰撞器參數、子動作參數。<br />
-子動作控制物件的物理交互，每個子動作實體獨立且可附帶在該物件實體的StateActionBuffer底下，以便在狀態改變時取消所有子動作的物理影響</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Attributes</th>
-<th style="text-align:left">SubAction</th>
-<th style="text-align:left">ColliderBuffer</th>
-<th style="text-align:left">Object</th>
-<th style="text-align:left">State</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Attributes_HP</td>
-<td style="text-align:left">SubAction_Force</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">Object_SynchroID</td>
-<td style="text-align:left">State_ActionFlag</td>
-</tr>
-<tr>
-<td style="text-align:left">Attributes_MP</td>
-<td style="text-align:left">SubAction_Rotat</td>
-<td style="text-align:left">ColliderBuffer_Hitbox</td>
-<td style="text-align:left">Object_Layer</td>
-<td style="text-align:left">State_Abnormal</td>
-</tr>
-<tr>
-<td style="text-align:left">Attributes_ATK</td>
-<td style="text-align:left">SubAction_Transform</td>
-<td style="text-align:left">ColliderBuffer_Hurtbox</td>
-<td style="text-align:left">Object_LifeTime</td>
-<td style="text-align:left">State_StateMachine</td>
-</tr>
-<tr>
-<td style="text-align:left">Attributes_DEF</td>
-<td style="text-align:left">SubAction_Track</td>
-<td style="text-align:left">ColliderBuffer_Rigidbody</td>
-<td style="text-align:left">Object_Handler</td>
-<td style="text-align:left">State_InputFlags</td>
-</tr>
-<tr>
-<td style="text-align:left">Attributes_SPD</td>
-<td style="text-align:left">SubAction_AimLock</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">Object_Owner</td>
-<td style="text-align:left">State_SubActionBuffer</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Role</th>
-<th style="text-align:left">Bullet</th>
-<th style="text-align:left">Character</th>
-<th style="text-align:left">Collider</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Role_Info</td>
-<td style="text-align:left">Bullet_Info</td>
-<td style="text-align:left">Character_Info</td>
-<td style="text-align:left">Collider_Info</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">struct</span> System_OnInstantiate : IComponentData&#123; </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">struct</span> System_OnDestroy : IComponentData&#123; </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">struct</span> System_OnCreat : IComponentData&#123;</span><br><span class="line">    <span class="keyword">public</span> Object_SynchroID id;</span><br><span class="line">    <span class="keyword">public</span> Object_Layer layer;</span><br><span class="line">    <span class="keyword">public</span> Object_LifeTime life;</span><br><span class="line">    <span class="keyword">public</span> Object_Owner owner;</span><br><span class="line">    <span class="keyword">public</span> LocalTransform transform;</span><br><span class="line">    <span class="keyword">public</span> Parent parent;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="系統規劃"><a class="markdownIt-Anchor" href="#系統規劃"></a> 系統規劃</h3>
-<ul>
-<li>GameSystem : 處理所有遊戲內遊戲狀態，遊戲初始化、GameTick、遊戲事件。</li>
-<li>UnityDotsBaseSystem : Unity自帶物理系統，含Rigidbody與碰撞檢測算法。</li>
-<li>PhysicsSystem : 自製獨立物理系統，能引入物理參數，客製化物理。</li>
-<li>PlayerSystem : 玩家操作同步到ECS、玩家資料同步。</li>
-<li>HitboxBakerSystem : 每幀調用Hitbox。</li>
-<li>StateMachionSystem : 每幀依造物件ID的動作藍圖執行帶狀態機組件的實體模擬物件動作。</li>
-<li>SubActionSystem : 每個物件有DynamicBuffer掛載子動作，子動作獨立在SubActionSystem執行負載物的Transform修改(兩個實體:一個是子動作實體;一個是負載物)</li>
-</ul>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">struct</span> SubAction_Force : IComponentData&#123;</span><br><span class="line">    <span class="keyword">public</span> Entity load;</span><br><span class="line">    <span class="keyword">public</span> float3 vector;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">bool</span> @fixed;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> _virtual = SystemAPI.GetComponentLookup&lt;Physics_Virtual&gt;(isReadOnly: <span class="literal">false</span>);</span><br><span class="line"><span class="keyword">foreach</span> (<span class="keyword">var</span> data <span class="keyword">in</span> SystemAPI.Query&lt;RefRW&lt;SubAction_Force&gt;&gt;())&#123;</span><br><span class="line">    _virtual.GetRefRW(load).ValueRW.linear = math.mul(_transform[load].Rotation, data.vector);  </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 每個子動作帶生命週期，在ObjectHandler定義該交互參數。</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>EventSystem : TriggerEvent、TriggerBuffer、CooldownBuffer、GameEvent、物件事件委任在ObjectHandler裡</li>
-<li>VelocitySystem : 原生物裡系統，唯一能改動物件Transform的地方。</li>
-<li>LifeTimeSystem : 每個實體物件必帶生命週期，模擬物件生成、更新、修毀。</li>
-</ul>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">foreach</span> (<span class="keyword">var</span> (OnCreat, entity) <span class="keyword">in</span> SystemAPI.Query&lt;RefRO&lt;System_OnCreat&gt;&gt;().WithEntityAccess())&#123;</span><br><span class="line">    ctx.ecb.AddComponent&lt;Object_SynchroID&gt;(entity, <span class="keyword">new</span> Object_SynchroID &#123; synchroID = SystemAPI.GetSingletonRW&lt;Singleton_GameData&gt;().ValueRW.synchroID++ &#125;);</span><br><span class="line">    ctx.ecb.AddComponent&lt;Object_Layer&gt;(entity, OnCreat.ValueRO.layer);</span><br><span class="line">    ctx.ecb.AddComponent&lt;Object_LifeTime&gt;(entity, OnCreat.ValueRO.life);</span><br><span class="line">    ctx.ecb.AddComponent&lt;Object_Owner&gt;(entity, OnCreat.ValueRO.owner);</span><br><span class="line">    ctx.ecb.AddComponent&lt;LocalTransform&gt;(entity, OnCreat.ValueRO.transform);</span><br><span class="line">    ctx.ecb.AddComponent&lt;Parent&gt;(entity, OnCreat.ValueRO.parent);</span><br><span class="line">    ctx.ecb.RemoveComponent&lt;System_OnCreat&gt;(entity);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">foreach</span> (<span class="keyword">var</span> (data, entity) <span class="keyword">in</span> SystemAPI.Query&lt;RefRW&lt;System_OnDestroy&gt;&gt;().WithEntityAccess())&#123;</span><br><span class="line">    ctx.SafeDestroyEntity(entity);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">foreach</span> (<span class="keyword">var</span> (data, entity) <span class="keyword">in</span> SystemAPI.Query&lt;RefRW&lt;Object_LifeTime&gt;&gt;().WithEntityAccess())&#123;</span><br><span class="line">    data.ValueRW.lifeTime++;</span><br><span class="line">    <span class="keyword">if</span> (data.ValueRO.releaseTime != <span class="number">0</span> &amp;&amp; data.ValueRW.releaseTime == data.ValueRW.lifeTime)&#123;</span><br><span class="line">        ctx.ecb.AddComponent(entity, <span class="keyword">new</span> System_OnDestroy &#123; &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id=""><a class="markdownIt-Anchor" href="#"></a> </h3>
+<p>有一天會寫日記的 友#jackoo 傳了漂亮blog給我;我其實是不寫日記的，不知道為甚麼我總是排斥過去的自己，其一是對當下的總結不夠，其二是總覺得自己不夠好，記錄著也沒意思。</p>
+<h3 id="-2"><a class="markdownIt-Anchor" href="#-2"></a> </h3>
+<p>最近在看龍族-江南，前面劇情很尷尬，畢竟是初代龍傲天爽文，沒有任何參考，只能無中生有，我那時就在想作者的心境。他是怎麼在迷茫裡持續寫作的。<br />
+隨著時間推流，時間給了故事力量，不管是故事還是作者，隨者時間成長，我喜歡那種感覺，不只是主角在故事中的成長，更是作者在現實裡的成長。假如作者用現在的寫作功力從頭寫一份龍族，少了當初青澀的文筆，那就不是龍族。</p>
+<h3 id="-3"><a class="markdownIt-Anchor" href="#-3"></a> </h3>
+<p>故事，有了起頭過程並且紀錄著才是故事。</p>
+
     </div>
     <footer class="article-footer">
-        <a class="article-category-link" href="/categories/Unity/" title="Unity" data-aos="zoom-in">Unity</a>
+        <a class="article-category-link" href="/categories/%E9%9B%9C%E8%AB%87/" title="雜談" data-aos="zoom-in">雜談</a>
 
       
     </footer>
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+          <img data-src="/lib/post/%E6%89%8B%E5%81%9A%E6%90%96%E6%A1%BF%E5%A4%A7%E6%90%96/cover.png" data-sizes="auto" alt="手做搖桿大搖" class="lazyload">
+        <a href="/2025/09/25/%E9%9B%9C%E8%AB%87/%E6%89%8B%E5%81%9A%E6%90%96%E6%A1%BF%E5%A4%A7%E6%90%96/" aria-label="Prev: 手做搖桿大搖" title="Prev: 手做搖桿大搖"></a>
+        <div class="article-nav-caption">Prev</div>
+        <h3 class="article-nav-title">
+            手做搖桿大搖
+        </h3>
+      </div>
     <div class="article-nav-link-wrap right">
-        <img data-src="/lib/post/%E8%AB%87ECS%E8%88%87OOP/cover.png" data-sizes="auto" alt="ECS架構" class="lazyload">
-      <a href="/2026/02/06/%E8%AB%87ECS%E8%88%87OOP/" aria-label="Next: ECS架構"  title="Next: ECS架構"></a>
+        <img data-src="/lib/post/%E7%82%BA%E4%BD%95%E6%88%91%E6%83%B3%E8%A6%81%E5%81%9A%E9%81%8A%E6%88%B2/cover.png" data-sizes="auto" alt="為何我想要做遊戲" class="lazyload">
+      <a href="/2025/07/24/%E9%81%8A%E6%88%B2%E8%A3%BD%E4%BD%9C/%E7%82%BA%E4%BD%95%E6%88%91%E6%83%B3%E8%A6%81%E5%81%9A%E9%81%8A%E6%88%B2/" aria-label="Next: 為何我想要做遊戲"  title="Next: 為何我想要做遊戲"></a>
       <div class="article-nav-caption">Next</div>
       <h3 class="article-nav-title">
-          ECS架構
+          為何我想要做遊戲
       </h3>
     </div>
   </nav>
@@ -362,10 +283,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        3.3k
+        6.8k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:16
+        00:30
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -387,7 +308,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B0%A1%E6%98%93%E6%9E%B6%E6%A7%8B%E5%9C%96"><span class="toc-number">1.</span> <span class="toc-text"> 簡易架構圖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E6%9E%B6%E6%A7%8B%E5%9C%96"><span class="toc-number">2.</span> <span class="toc-text"> 完整架構圖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B5%84%E4%BB%B6%E8%A6%8F%E5%8A%83"><span class="toc-number">3.</span> <span class="toc-text"> 組件規劃</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%B5%B1%E8%A6%8F%E5%8A%83"><span class="toc-number">4.</span> <span class="toc-text"> 系統規劃</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text"> </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-2"><span class="toc-number">2.</span> <span class="toc-text"> </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-3"><span class="toc-number">3.</span> <span class="toc-text"> </span></a></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -398,11 +319,11 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Post</div>
-    <div class="sidebar-state-number">7</div>
+    <div class="sidebar-state-number">11</div>
   </div>
   <div class="sidebar-state-category">
     <div>Category</div>
-    <div class="sidebar-state-number">3</div>
+    <div class="sidebar-state-number">4</div>
   </div>
   <div class="sidebar-state-tag">
     <div>Tag</div>
@@ -509,14 +430,14 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "Fntasy",
-          title: "程式架構圖(獨立遊戲_幻奏)",
-          url: "https://example.com/2026/02/06/%E7%A8%8B%E5%BC%8F%E6%9E%B6%E6%A7%8B%E5%9C%96(%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2_%E5%B9%BB%E5%A5%8F)/",
+          title: "初到Hexo",
+          url: "https://example.com/2025/09/25/%E9%9B%9C%E8%AB%87/%E5%88%9D%E5%88%B0Hexo/",
           excerpt: "",
           description: "",
-          stripContent: "  簡易架構圖   完整架構圖   組件規劃 ECS去模擬OOP，每個主實體帶有物件組件，並且帶有生命週期組件，每個會更新生命週期的物件，帶有狀態機組件。 狀態機系統更新組件，依照對應的ObjectHandler處理每幀的狀態更新，含每幀的所有狀態資料、碰撞器參數、子動作參數。 子動作控制物件的物理交互，每個子動作實體獨立且可附帶在該物件實體的StateActionBuffer底下，以便在狀態改變時取消所有子動作的物理影響    Attributes SubAction ColliderBuff",
-          date: "Fri Feb 06 2026 16:20:00 GMT+0800",
-          updated: "Sat Feb 07 2026 01:43:47 GMT+0800",
-          cover: "/lib/post/%E7%A8%8B%E5%BC%8F%E6%9E%B6%E6%A7%8B%E5%9C%96(%E7%8D%A8%E7%AB%8B%E9%81%8A%E6%88%B2_%E5%B9%BB%E5%A5%8F)/%E5%B9%BB%E5%A5%8F%E6%9E%B6%E6%A7%8B%E5%9C%96.png",
+          stripContent: "   有一天會寫日記的 友#jackoo 傳了漂亮blog給我;我其實是不寫日記的，不知道為甚麼我總是排斥過去的自己，其一是對當下的總結不夠，其二是總覺得自己不夠好，記錄著也沒意思。   最近在看龍族-江南，前面劇情很尷尬，畢竟是初代龍傲天爽文，沒有任何參考，只能無中生有，我那時就在想作者的心境。他是怎麼在迷茫裡持續寫作的。 隨著時間推流，時間給了故事力量，不管是故事還是作者，隨者時間成長，我喜歡那種感覺，不只是主角在故事中的成長，更是作者在現實裡的成長。假如作者用現在的寫作功力從頭寫一份龍族，",
+          date: "Thu Sep 25 2025 17:49:32 GMT+0800",
+          updated: "Mon Feb 09 2026 15:56:21 GMT+0800",
+          cover: "/lib/post/%E5%88%9D%E5%88%B0Hexo/cover.png",
         };
       </script>
         

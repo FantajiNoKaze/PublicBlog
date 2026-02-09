@@ -1,0 +1,553 @@
+  <!DOCTYPE html>
+  <html lang="en"  
+      data-theme-mode="false"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"en":"Copy successfully (*^▽^*)"},"fail":{"en":"Copy failed (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = 'All articles on this blog are licensed under the BY-NC-SA license agreement unless otherwise stated. Please indicate the source when reprinting!';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://example.com';</script>
+  <title>
+    遊戲分析_英雄聯盟LOL | 靜華水閱
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="探討英雄聯盟時須先介紹RTS(Real-time Strategy)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="遊戲分析_英雄聯盟LOL">
+<meta property="og:url" content="https://example.com/2026/02/09/%E9%81%8A%E6%88%B2%E8%A3%BD%E4%BD%9C/%E9%81%8A%E6%88%B2%E5%88%86%E6%9E%90_%E8%8B%B1%E9%9B%84%E8%81%AF%E7%9B%9F/index.html">
+<meta property="og:site_name" content="靜華水閱">
+<meta property="og:description" content="探討英雄聯盟時須先介紹RTS(Real-time Strategy)">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/dae5b2dc2bf5472edc69262a289e065394ee790b-1920x1080.jpg?accountingTag=LoL&auto=format&fit=fill&q=80&w=1184">
+<meta property="og:image" content="https://example.com/lib/post/%E9%81%8A%E6%88%B2%E5%88%86%E6%9E%90_%E8%8B%B1%E9%9B%84%E8%81%AF%E7%9B%9F/lolmap.png">
+<meta property="article:published_time" content="2026-02-09T05:43:00.000Z">
+<meta property="article:modified_time" content="2026-02-09T09:08:42.207Z">
+<meta property="article:author" content="Fntasy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/dae5b2dc2bf5472edc69262a289e065394ee790b-1920x1080.jpg?accountingTag=LoL&auto=format&fit=fill&q=80&w=1184">
+    <link rel="alternate" href="/atom.xml" title="靜華水閱" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">Loading...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">Home</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">Archives</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">About</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">Friend</span>
+        </span>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed" aria-label="RSS Feed" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+    <picture></picture>
+    <img  fetchpriority="high" src="/lib/post/%E9%81%8A%E6%88%B2%E5%88%86%E6%9E%90/cover.png" alt="遊戲分析_英雄聯盟LOL">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">遊戲分析_英雄聯盟LOL</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A2%E8%A8%8E%E8%8B%B1%E9%9B%84%E8%81%AF%E7%9B%9F%E6%99%82%E9%A0%88%E5%85%88%E4%BB%8B%E7%B4%B9rtsreal-time-strategy"><span class="toc-number">1.</span> <span class="toc-text"> 探討英雄聯盟時須先介紹RTS(Real-time Strategy)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%B3%E6%99%82%E6%88%B0%E7%95%A5%E5%9E%8B%E9%81%8A%E6%88%B2"><span class="toc-number">2.</span> <span class="toc-text"> 即時戰略型遊戲</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8B%B1%E9%9B%84%E8%81%AF%E7%9B%9Flol"><span class="toc-number">3.</span> <span class="toc-text"> 英雄聯盟LOL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%B7%9A%E4%BB%BB%E5%8B%99"><span class="toc-number">3.1.</span> <span class="toc-text"> 路線任務</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%A9%9F%E5%88%B6-%E5%9C%B0%E5%9C%96%E8%B3%87%E6%BA%90-%E5%9B%9E%E5%90%88"><span class="toc-number">4.</span> <span class="toc-text"> 核心機制、地圖資源、回合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E9%87%8Ejungle-%E5%9B%9E%E5%90%88%E6%8E%A7%E5%88%B6"><span class="toc-number">4.1.</span> <span class="toc-text"> 打野(jungle) 回合控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BC%94%E5%8A%A9support-%E5%9B%9E%E5%90%88%E5%89%8D%E6%88%B0%E7%95%A5%E5%B8%83%E7%BD%AE"><span class="toc-number">4.2.</span> <span class="toc-text"> 輔助(support) 回合前戰略布置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E8%B7%AFmid-%E8%BC%94%E5%8A%A9%E5%9B%9E%E5%90%88%E5%BD%8C%E8%A3%9C%E5%9B%9E%E5%90%88%E5%BB%B6%E5%BE%8C%E5%9B%9E%E5%90%88"><span class="toc-number">4.3.</span> <span class="toc-text"> 中路(mid) 輔助回合，彌補回合，延後回合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E8%B7%AFtop-%E5%9C%98%E6%88%B0tank"><span class="toc-number">4.4.</span> <span class="toc-text"> 上路(top) 團戰Tank</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%B7%AFbot-%E5%9C%98%E6%88%B0dps"><span class="toc-number">4.5.</span> <span class="toc-text"> 下路(bot) 團戰DPS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%8A%E6%88%B2%E9%80%B2%E8%A1%8C-%E5%89%8D%E4%B8%AD%E5%BE%8C"><span class="toc-number">5.</span> <span class="toc-text"> 遊戲進行 前中後</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E6%9C%9F"><span class="toc-number">5.1.</span> <span class="toc-text"> 前期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E6%9C%9F"><span class="toc-number">5.2.</span> <span class="toc-text"> 中期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%8C%E6%9C%9F"><span class="toc-number">5.3.</span> <span class="toc-text"> 後期</span></a></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Fntasy" class="lazyload">
+  <div class="sidebar-author-name">Fntasy</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">11</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-遊戲製作/遊戲分析_英雄聯盟" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-02-09T05:43:00.000Z" itemprop="datePublished">2026-02-09</time>
+    <time style="display: none;" id="post-update-time">2026-02-09</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h3 id="探討英雄聯盟時須先介紹rtsreal-time-strategy"><a class="markdownIt-Anchor" href="#探討英雄聯盟時須先介紹rtsreal-time-strategy"></a> 探討英雄聯盟時須先介紹RTS(Real-time Strategy)</h3>
+<span id="more"></span>
+<h2 id="即時戰略型遊戲"><a class="markdownIt-Anchor" href="#即時戰略型遊戲"></a> 即時戰略型遊戲</h2>
+<p>探討英雄聯盟時須先介紹RTS(Real-time Strategy)，Real-time相比於回合制，即時的意思就是指所有東西都能同步進行，Strategy遊戲的目的<br />
+往往是希望玩家通過對遊戲中累積的資源管理，重大決策決定勝利。</p>
+<ul>
+<li>即時性遊戲設計 : 相比於回合制，即時性的操作比重占比非常大，假設在地圖資源固定的情況下，操作量越多，或者操作效率越高的一邊，獲得的資源就越高。</li>
+<li>戰略遊戲地圖與設計 : 戰略遊戲設計，鞏固自身的資源、設法獲得中立資源、攻擊敵方的資源，而以上的決策需要消耗時間或者消耗資源，或者贏下衝突點做交換。在英雄聯盟的設計上，單位移動時間與資源獲取時間就是消耗時間，單位資源就是MP，HP。也因為有消耗資源所以需要補充資源，而補充<br />
+的時間，也就是戰略遊戲的魅力=&gt;回合制。</li>
+<li>所以就算他是即時性但是也是戰略回合制遊戲，這就是RTS的魅力。消耗資源是遊戲設計最為關鍵的一步之後會再快打旋風篇、遊戲王篇在介紹。</li>
+</ul>
+<h2 id="英雄聯盟lol"><a class="markdownIt-Anchor" href="#英雄聯盟lol"></a> 英雄聯盟LOL</h2>
+<p>英雄聯盟設計為3條衝突路線，在路線上彼此可以透過敵方單位獲得經濟;與1條中立資源線。大型中立資源在遊戲中期出現，重大決策最大型中立資源在遊戲後期出現。</p>
+<h3 id="路線任務"><a class="markdownIt-Anchor" href="#路線任務"></a> 路線任務</h3>
+<p>在26.1版本LOL加入了全新的路線任務，這也是讓我想要寫這篇文章的原因，在最早期的LOL戰略遊戲的比重沒有那麼重，因為擊殺敵方獲得的經濟<br />
+比地圖上的經濟高出太多了，所以相比於任何決策，都應該優先擊殺敵方玩家，而在26.1版本中，經濟比重改為地圖上的經濟與自然獲得的經濟更重<br />
+，也就是說，只要沒有不是在等待擊殺或是死亡，就是最好的經濟路線，擊殺的這個動作變成讓在死亡時間時不得獲取資源的逞罰，這對戰略型遊戲來說，是很好的提升。</p>
+ <div class="post-link-card-wrap">
+    <div class="post-link-card">
+      <a href="https://www.leagueoflegends.com/zh-tw/news/game-updates/patch-26-1-notes/" title="26.1版本" rel="noopener nofollow noreferrer" target="_blank"></a>
+      <div class="post-link-card-cover-wrap"><img src="https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/dae5b2dc2bf5472edc69262a289e065394ee790b-1920x1080.jpg?accountingTag=LoL&auto=format&fit=fill&q=80&w=1184" class="no-lightbox" title="26.1版本" alt="26.1版本"/></div>
+      <div class="post-link-card-item-wrap">
+        <div class="post-link-card-title">26.1版本</div>
+        <div class="post-link-card-excerpt"><span class="icon-link"></span>https://www.leagueoflegends.com/zh-tw/news/game-updates/patch-26-1-notes/</div>
+      </div>
+    </div>
+  </div>
+<h2 id="核心機制-地圖資源-回合"><a class="markdownIt-Anchor" href="#核心機制-地圖資源-回合"></a> 核心機制、地圖資源、回合</h2>
+<h3 id="打野jungle-回合控制"><a class="markdownIt-Anchor" href="#打野jungle-回合控制"></a> 打野(jungle) 回合控制</h3>
+<p>我們說戰略遊戲最重要的就是資源決策，資源是以單位移動時間與資源獲取時間來換得，良好獲取資源可以是交換(你用你的時間，我用我的時間)或者贏下衝突(敵方進入死亡時間)，基於這點必須先提到遊戲內的核心位置打野(jungle)。<br />
+小型中立資源是境像的，平均散佈在地圖各處，資源重生時間差不多，所以當打野獲取地圖一側資源時，沒辦法獲取到另一側資源。jungle在做決策上要評估決策所消耗的時間換得的資源有沒有比對方消耗時間獲得的資源更多，並且因為地圖是鏡向的所以有可能在做一側資源奪取時，對方也能鏡向反制。</p>
+<h3 id="輔助support-回合前戰略布置"><a class="markdownIt-Anchor" href="#輔助support-回合前戰略布置"></a> 輔助(support) 回合前戰略布置</h3>
+<p>sup前期平時會在血少但是dps高的角色旁邊，這樣可以讓該角色的發育最為平整，輔助可以不吃任何單位經濟會被遊戲內規則逞罰(LOL設計師鎖的)，前面提到經濟是用時間換的，所以在不用獲取單位經濟的輔助，有著大把的時間，所以輔助效率最高的作法應該是在地圖上遊走並做出與jungle的進攻或者相反路線的防守，也就是說輔助是以自己的單位移動時間，彌補其他人的單位移動時間，在遊戲裡，視野可以看成是單位移動時間的一環，已經有視野的地方就不用玩家在移動過去或者，做猜測的決策。</p>
+<h3 id="中路mid-輔助回合彌補回合延後回合"><a class="markdownIt-Anchor" href="#中路mid-輔助回合彌補回合延後回合"></a> 中路(mid) 輔助回合，彌補回合，延後回合</h3>
+<ul>
+<li>回合輔助 : 在回合前就先占領視野與草叢，是贏下衝突碰撞的關鍵，jungle在做資源決策時會參照中路線的回合，如果中路能把線權控制好，對整個野區的回合博弈非常穩定。</li>
+<li>彌補回合 : 在回合結束時因為需要買裝備、補MP、補HP、補充視野補給品通常敵方就能在這時先搶占下個回合的視野或者線權，這時中路就能發揮自身角色優勢快速洗兵或者使用絕招做支援，弭補下回合敵方的進攻點。</li>
+<li>延後回合 : 在回合輔助時提到占領視野與草叢是贏下衝突碰撞的關鍵，所以在獲得中立資源的決策上可以先去中路搶奪線權，使敵方中線不得不在中路接取單位經濟，<br />
+這樣可以干擾敵方在中立資源的回合，或者製造回合轉換的局面。</li>
+</ul>
+<h3 id="上路top-團戰tank"><a class="markdownIt-Anchor" href="#上路top-團戰tank"></a> 上路(top) 團戰Tank</h3>
+<p>犧牲路，前面提到，獲得資源也就相伴著損失資源，在LOL的設計裡，護甲裝比攻擊裝便宜，效益也較高，所以最高效率的作法也就是犧牲坦克的經濟換取團隊經濟。反之如果能夠扛住壓力或者發育起來，能給DPS一個極度穩定的輸出環境。<br />
+通常會帶TP，輔助團戰，犧牲自己資源輔助爭奪資源。二塔越線洗兵後TP能領先半個回合</p>
+<h3 id="下路bot-團戰dps"><a class="markdownIt-Anchor" href="#下路bot-團戰dps"></a> 下路(bot) 團戰DPS</h3>
+<p>為發育最平滑的一條路，高質量的對局應該確保於DPS的經濟發育，確保在團戰裡的最高效率輸出。反之敵方應該盡量干擾DPS發育</p>
+<h2 id="遊戲進行-前中後"><a class="markdownIt-Anchor" href="#遊戲進行-前中後"></a> 遊戲進行 前中後</h2>
+<p><img src="/lib/post/%E9%81%8A%E6%88%B2%E5%88%86%E6%9E%90_%E8%8B%B1%E9%9B%84%E8%81%AF%E7%9B%9F/lolmap.png" alt="" /></p>
+<h3 id="前期"><a class="markdownIt-Anchor" href="#前期"></a> 前期</h3>
+<p>前期核心在於戰術規劃與等級管理，戰術取決於需要甚麼角色在中期發力，確保中期時能讓後期的角色大幅度穩定的獲取經濟。<br />
+線上的單位經濟與等級，取決於進入遊戲前的選角ban角。<br />
+線上之外打野最高效率的辦法是自身方中立資源全刷，確保在衝突發生時自身的等級或裝備是最高的，當然就衍生出了變奏。<br />
+理論上打野位的開局能選擇4等時要保護誰，6等時保護誰，因為會剛好對上野區資源獲取路線，以至於發展換路這個概念，也就是在打野刷完一側時上下路線交換形成DPS永遠都在打野側，這樣每當衝突時打野都會出現在衝突點。</p>
+<h3 id="中期"><a class="markdownIt-Anchor" href="#中期"></a> 中期</h3>
+<p>大型中立物件爭奪時間點，能先獲取完自身資源的一方能先布置大型中立物件的戰鬥場地，先不視野或者角色先落位，後者，需要做資源的防守，或者交換中立物件或者中立資源。<br />
+確保DPS經濟發育穩定，理論上效率最高的方法就是轉移至中路，這樣各個路線的隊友都能最快最掩護，爾且中路線在最短靠近防禦塔，在爆發團戰時也能有穩定輸出。</p>
+<h3 id="後期"><a class="markdownIt-Anchor" href="#後期"></a> 後期</h3>
+<p>後期在於陣容設定與對局節奏的收束，陣容可以分為poke陣、大坦配DPS、衝排陣、4保1等…。基本上陣容關乎到遊戲內應該執行怎麼樣的決策。<br />
+後期的重點在於團戰的處理，逼迫防禦塔的調度，視野的博弈，此時因為死亡逞罰非常的高，死亡一次都要很久才能重生，所以視野(能不能先手或者抓人)變為重要。<br />
+在逼迫防禦塔的調度裡能不能抓到落單的敵人或者視野的博弈裡能不能取得或者隱藏自身，是後期團戰的關鍵。</p>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/%E9%81%8A%E6%88%B2%E8%A3%BD%E4%BD%9C/" title="遊戲製作" data-aos="zoom-in">遊戲製作</a>
+
+      
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+    <div class="article-nav-link-wrap right">
+        <img data-src="/lib/post/%E6%88%B0%E9%AC%A5%E4%BC%81%E5%8A%83/cover.png" data-sizes="auto" alt="戰鬥設計" class="lazyload">
+      <a href="/2026/02/09/%E9%81%8A%E6%88%B2%E8%A3%BD%E4%BD%9C/%E6%88%B0%E9%AC%A5%E4%BC%81%E5%8A%83/" aria-label="Next: 戰鬥設計"  title="Next: 戰鬥設計"></a>
+      <div class="article-nav-caption">Next</div>
+      <h3 class="article-nav-title">
+          戰鬥設計
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      Fntasy
+    </div>
+      <div>
+        Powered by&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        6.8k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        00:30
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">Contents</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A2%E8%A8%8E%E8%8B%B1%E9%9B%84%E8%81%AF%E7%9B%9F%E6%99%82%E9%A0%88%E5%85%88%E4%BB%8B%E7%B4%B9rtsreal-time-strategy"><span class="toc-number">1.</span> <span class="toc-text"> 探討英雄聯盟時須先介紹RTS(Real-time Strategy)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%B3%E6%99%82%E6%88%B0%E7%95%A5%E5%9E%8B%E9%81%8A%E6%88%B2"><span class="toc-number">2.</span> <span class="toc-text"> 即時戰略型遊戲</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8B%B1%E9%9B%84%E8%81%AF%E7%9B%9Flol"><span class="toc-number">3.</span> <span class="toc-text"> 英雄聯盟LOL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%B7%9A%E4%BB%BB%E5%8B%99"><span class="toc-number">3.1.</span> <span class="toc-text"> 路線任務</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%A9%9F%E5%88%B6-%E5%9C%B0%E5%9C%96%E8%B3%87%E6%BA%90-%E5%9B%9E%E5%90%88"><span class="toc-number">4.</span> <span class="toc-text"> 核心機制、地圖資源、回合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E9%87%8Ejungle-%E5%9B%9E%E5%90%88%E6%8E%A7%E5%88%B6"><span class="toc-number">4.1.</span> <span class="toc-text"> 打野(jungle) 回合控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BC%94%E5%8A%A9support-%E5%9B%9E%E5%90%88%E5%89%8D%E6%88%B0%E7%95%A5%E5%B8%83%E7%BD%AE"><span class="toc-number">4.2.</span> <span class="toc-text"> 輔助(support) 回合前戰略布置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E8%B7%AFmid-%E8%BC%94%E5%8A%A9%E5%9B%9E%E5%90%88%E5%BD%8C%E8%A3%9C%E5%9B%9E%E5%90%88%E5%BB%B6%E5%BE%8C%E5%9B%9E%E5%90%88"><span class="toc-number">4.3.</span> <span class="toc-text"> 中路(mid) 輔助回合，彌補回合，延後回合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E8%B7%AFtop-%E5%9C%98%E6%88%B0tank"><span class="toc-number">4.4.</span> <span class="toc-text"> 上路(top) 團戰Tank</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%B7%AFbot-%E5%9C%98%E6%88%B0dps"><span class="toc-number">4.5.</span> <span class="toc-text"> 下路(bot) 團戰DPS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%8A%E6%88%B2%E9%80%B2%E8%A1%8C-%E5%89%8D%E4%B8%AD%E5%BE%8C"><span class="toc-number">5.</span> <span class="toc-text"> 遊戲進行 前中後</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E6%9C%9F"><span class="toc-number">5.1.</span> <span class="toc-text"> 前期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E6%9C%9F"><span class="toc-number">5.2.</span> <span class="toc-text"> 中期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%8C%E6%9C%9F"><span class="toc-number">5.3.</span> <span class="toc-text"> 後期</span></a></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Fntasy" class="lazyload">
+  <div class="sidebar-author-name">Fntasy</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Post</div>
+    <div class="sidebar-state-number">11</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Category</div>
+    <div class="sidebar-state-number">4</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tag</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Home</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Archives</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">About</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">Friend</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "Fntasy",
+          title: "遊戲分析_英雄聯盟LOL",
+          url: "https://example.com/2026/02/09/%E9%81%8A%E6%88%B2%E8%A3%BD%E4%BD%9C/%E9%81%8A%E6%88%B2%E5%88%86%E6%9E%90_%E8%8B%B1%E9%9B%84%E8%81%AF%E7%9B%9F/",
+          excerpt: " 探討英雄聯盟時須先介紹RTS(Real-time Strategy)",
+          description: "",
+          stripContent: " 探討英雄聯盟時須先介紹RTS(Real-time Strategy)   即時戰略型遊戲 探討英雄聯盟時須先介紹RTS(Real-time Strategy)，Real-time相比於回合制，即時的意思就是指所有東西都能同步進行，Strategy遊戲的目的 往往是希望玩家通過對遊戲中累積的資源管理，重大決策決定勝利。  即時性遊戲設計 : 相比於回合制，即時性的操作比重占比非常大，假設在地圖資源固定的情況下，操作量越多，或者操作效率越高的一邊，獲得的資源就越高。 戰略遊戲地圖與設計 : 戰略遊",
+          date: "Mon Feb 09 2026 13:43:00 GMT+0800",
+          updated: "Mon Feb 09 2026 17:08:42 GMT+0800",
+          cover: "/lib/post/%E9%81%8A%E6%88%B2%E5%88%86%E6%9E%90/cover.png",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>
